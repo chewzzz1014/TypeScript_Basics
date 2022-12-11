@@ -1,1 +1,2 @@
-# TypeScript_Basics
+# Overview
+- Learning TypeScript as beginner.
