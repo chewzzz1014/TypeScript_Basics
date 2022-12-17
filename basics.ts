@@ -43,3 +43,14 @@ ids[30] = 'c'
 if (ids[30] === 'D') {
 }
 
+for (let i = 0; i < 10; i++) {
+    console.log(i)
+}
+
+[1, 2, 3].forEach(e => {
+    console.log(e)
+})
+
+const power2 = [1, 2, 3].map(e =>
+    e ** 2
+)
