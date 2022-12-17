@@ -9,8 +9,14 @@
   ```
 
 ## Run Typescript File
-  ```
-  # make sure ts-node is installed before use
-
-  npx ts-node <filename>
-  ```
+1. Convert to Javascript 
+    ```
+    tsc <filename.ts>
+    node <filename.js>
+    ```
+    
+2. Run using ts-node
+    ```
+    npm i -g ts-node 
+    ts-node <filename>
+    ```
