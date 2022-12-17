@@ -22,11 +22,15 @@ export const printFormat = (title: string, param: string | number) => {
 }
 
 // return promise
-export const fetcgData = (url: string): Promise<string> => {
+export const fetchData = (url: string): Promise<string> => {
     return Promise.resolve(`Data from ${url}`)
 }
 
 // rest parameter
 function introduce(salutation: string, ...names: string[]): string {
     return `${salutation} ${names.join(" ")}`
+}
+
+export function getName(user: { first: string; last: string }): string {
+    return `${user?.first} ${user?.last}`
 }
