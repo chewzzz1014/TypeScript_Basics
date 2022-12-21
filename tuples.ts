@@ -18,3 +18,21 @@ function add3DCoordinate(c1: ThreeCoordinate, c2: ThreeCoordinate): ThreeCoordin
 console.log(add3DCoordinate([0, 0, 0], [1, 1, 1]))
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+type stateTuple = [() => string, (v: string) => void]
+
+function simpleReactState(initial: string): stateTuple {
+    let str: string = initial
+    return [
+        () => str,
+        (v: string) => {
+            str = v
+        }
+    ]
+}
+
+const [strGetter, strSetter] = simpleReactState('Hello')
+
+console.log(strGetter())
+strSetter('World')
+console.log(strGetter())
