@@ -8,6 +8,7 @@ function printIngredients(quantity: string, ingredient: string, extra?: string) 
 printIngredients('1C', 'Onion Ring')
 printIngredients('1C', 'Pizza', 'Extra Cheese')
 
+////////////////////////////////////////////////////////////////////////
 
 // optional field
 interface User {
@@ -28,4 +29,15 @@ function getEmail(user: User): string {
 // optional chaining
 function getEmailEasy(user: User): string {
     return user?.info?.email ?? ''
+}
+
+
+//////////////////////////////////////////////////////////////////
+
+// optional callback
+function addWithCallback(x: number, y: number, callback: () => void) {
+    console.log(x, y)
+
+    // only execute if the callback exists
+    callback?.()
 }
