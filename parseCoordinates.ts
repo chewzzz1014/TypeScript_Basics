@@ -23,6 +23,7 @@ function parseCoordinateFromNumbers(x: number, y: number): Coordinate {
 
 // function overloading in typescript
 function parseCoordinates(obj: Coordinate): Coordinate;
+function parseCoordinates(str: string): Coordinate;
 function parseCoordinates(x: number, y: number): Coordinate;
 
 // use '?' for optional params (since we have overloading function with 2 param and 1 param)
@@ -40,6 +41,11 @@ function parseCoordinates(arg1: unknown, arg2?: unknown): Coordinate {
         coordinate = {
             ...(arg1 as Coordinate)
         }
+    } else if (typeof arg1 === 'string') {
+        (arg1 as string).split(',').forEach(str => {
+            const [k, v] = str.split(':')
+            coordinate[k as 'x' | 'y'] = parseInt(v, 10)
+        })
     } else {
         coordinate = {
             x: (arg1 as number),
@@ -55,3 +61,4 @@ console.log(parseCoordinates({
     x: 52,
     y: 35
 }))
+console.log(parseCoordinates('x:12,y:22'))
