@@ -16,10 +16,10 @@ console.log(arrayMutate([1, 2, 3], (v) => v ** 2))
 
 
 export type AdderFunction = (v: number) => number
-export function createAddress(num: number): AdderFunction {
+export function createAdder(num: number): AdderFunction {
     return (val: number) => num + val;
 }
 
-const addOne = createAddress(1)
+const addOne = createAdder(1)
 console.log(addOne(55)) // 56
 
