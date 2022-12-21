@@ -46,8 +46,8 @@ function findHouses(houses: unknown, func?: filterFunction): HouseWithId[] {
 
     let result: HouseWithId[] = (houses as House[]).map((h, idx) => {
         return {
+            id: idx,
             ...h,
-            id: idx
         }
     })
 
