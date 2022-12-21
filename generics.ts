@@ -49,3 +49,26 @@ function ranker<RankItem>(
 }
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// calling 'ranker'function with Pokemon type
+
+interface Pokemon {
+    name: string,
+    hp: number
+}
+
+const pokemon: Pokemon[] = [
+    {
+        name: 'zzzzz',
+        hp: 20
+    },
+    {
+        name: 'xxxxx',
+        hp: 33
+    }
+]
+
+const ranks = ranker(pokemon, ({ hp }) => hp)
+console.log(ranks)
+
