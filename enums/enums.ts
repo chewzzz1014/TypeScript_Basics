@@ -24,6 +24,7 @@ console.log(isLoading(LoadingState.beforeLoad))
 
 // literal types 
 
+// number literal
 // dice value can only either be 1, 2, 3
 function rollDice(dice: 1 | 2 | 3): number {
     let pip = 0
@@ -36,7 +37,7 @@ function rollDice(dice: 1 | 2 | 3): number {
 
 console.log(rollDice(3))
 
-
+// string literal
 function sendEvent(name: 'addToCart', data: { productId: number; }): void
 function sendEvent(name: 'checkout', data: { cartCount: number; }): void
 function sendEvent(name: string, data: unknown): void {
