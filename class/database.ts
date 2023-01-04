@@ -1,6 +1,6 @@
-interface Database {
-    get(id: string): string;
-    set(id: string, value: string): void
+interface Database<T> {
+    get(id: string): T;
+    set(id: string, value: T): void
 }
 
 interface Persistable {
@@ -9,17 +9,17 @@ interface Persistable {
 }
 
 // class
-class InMemoryDatabase implements Database {
-    protected db: Record<string, string> = {};
-    get(id: string): string {
+class InMemoryDatabase<T> implements Database<T> {
+    protected db: Record<string, T> = {};
+    get(id: string): T {
         return this.db[id]
     };
-    set(id: string, value: string): void {
+    set(id: string, value: T): void {
         this.db[id] = value
     }
 }
 
-class PersistentMemoryDB extends InMemoryDatabase implements Persistable {
+class PersistentMemoryDB<T> extends InMemoryDatabase<T> implements Persistable {
     saveToString(): string {
         return JSON.stringify(this.db)
     };
@@ -28,18 +28,18 @@ class PersistentMemoryDB extends InMemoryDatabase implements Persistable {
     }
 }
 
-const myDB = new PersistentMemoryDB()
-myDB.set('foo', 'bar')
+const myDB = new PersistentMemoryDB<number>()
+myDB.set('foo', 200)
 // error: db is private
-//myDB.db['foo'] = 'baz'
+//myDB.db['foo'] = 12
 
 console.log(myDB.get('foo'))
 const saved = myDB.saveToString()
 // updte myDB.db after save its state
-myDB.set('foo', 'db - bar')
+myDB.set('foo', 50)
 
-// myDB2.db = {"foo": "bar"}
-const myDB2 = new PersistentMemoryDB()
+// myDB2.db = {"foo": 200}
+const myDB2 = new PersistentMemoryDB<number>()
 myDB2.restoreFromString(saved)
 console.log(myDB2.get('foo'))
 
