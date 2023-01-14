@@ -69,6 +69,7 @@ console.log(map(['1', '2', '3'], (n) => parseInt(n)))
 /////////////////////////////////////////////////////////
 
 // generic function woth constraint (specifying kinds of types a type param accepts)
+// Rule: When possible, use the type parameter itself rather than constraining it
 
 function longest<T extends { length: number }>(a: T, b: T) {
     return (a.length > b.length) ? a : b
@@ -80,3 +81,26 @@ const longerArray = longest([1, 2], [1, 2, 3]);
 const longerString = longest("alice", "bob");
 // Error! Numbers don't have a 'length' property
 //const notOK = longest(10, 100);
+
+function minLength<T extends { length: number }>(
+    obj: T,
+    min: number
+): T {
+    // error! We're returning object that matches the constraint instead of T 
+    //return (obj.length >= min) ? obj : { length: min }
+    return obj
+}
+
+
+/////////////////////////////////////////////////////////
+
+// specify type argument
+function combineArr<T>(a: T[], b: T[]): T[] {
+    return a.concat(b)
+}
+
+// error! both arrays must be of the same type
+//const arr = combineArr([1, 2, 3], ["hello"]);
+
+// specify Type (union type)
+console.log(combineArr<string | number>([1, 2, 3], ["hello"]))
