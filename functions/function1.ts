@@ -64,3 +64,19 @@ function map<Input, Output>(arr: Input[], fn: (ele: Input) => Output): Output[] 
 }
 
 console.log(map(['1', '2', '3'], (n) => parseInt(n)))
+
+
+/////////////////////////////////////////////////////////
+
+// generic function woth constraint (specifying kinds of types a type param accepts)
+
+function longest<T extends { length: number }>(a: T, b: T) {
+    return (a.length > b.length) ? a : b
+}
+
+// longerArray is of type 'number[]'
+const longerArray = longest([1, 2], [1, 2, 3]);
+// longerString is of type 'alice' | 'bob'
+const longerString = longest("alice", "bob");
+// Error! Numbers don't have a 'length' property
+//const notOK = longest(10, 100);
