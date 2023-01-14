@@ -1,4 +1,5 @@
 // function overload
+// Always prefer parameters with union types instead of overloads when possible
 
 // overload signature
 function makeDate(timestamp: number): Date;
