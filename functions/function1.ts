@@ -34,9 +34,33 @@ function doSmth(fn: DescribableFunction) {
 // function with constructor
 type SomeConstructor = {
     new(s: string): string;    // constructor signature
-    ()
+    (n?: number): number;
 }
 
 function fn(ctor: SomeConstructor) {
     return new ctor('Hello')
 }
+
+
+/////////////////////////////////////////////////////////
+
+// generic function 
+function firstElement<T>(arr: T[]): T {
+    return arr[0]
+}
+
+// the type is inferred(chosen) automatically by TS
+
+// s is of type 'string'
+const s = firstElement(["a", "b", "c"]);
+// n is of type 'number'
+const n = firstElement([1, 2, 3]);
+// u is of type undefined
+const u = firstElement([]);
+
+// multiple type
+function map<Input, Output>(arr: Input[], fn: (ele: Input) => Output): Output[] {
+    return arr.map(fn)
+}
+
+console.log(map(['1', '2', '3'], (n) => parseInt(n)))
