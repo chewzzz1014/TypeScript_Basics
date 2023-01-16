@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/chewzzz1014/TypeScript_Basics/issues"
   },
-  "homepage": "https://github.com/chewzzz1014/TypeScript_Basics#readme"
+  "homepage": "https://github.com/chewzzz1014/TypeScript_Basics#readme",
+  "dependencies": {
+    "typescript": "^4.9.4"
+  }
 }
