@@ -6,4 +6,4 @@ function swapNumbers(num1: number, num2: number): [number, number] {
     return [num2, num1]
 }
 
-swapNum = swapNumbers(2, 3)
+swapNum = swapNumbers(2, 3) 
