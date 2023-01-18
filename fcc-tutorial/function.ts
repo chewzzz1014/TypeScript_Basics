@@ -31,3 +31,9 @@ function printParticipant(...args: string[]) {
 }
 
 printParticipant('aaa', 'vvv', 'ccc', 'yyy', 'kkk')
+
+// generic function
+function getItem<T>(items: T[]): T[] {
+    return new Array<T>().concat(items)
+}
+console.log(getItem(['wee', 'wwwerer', 'yyyyy'])) // return number array
