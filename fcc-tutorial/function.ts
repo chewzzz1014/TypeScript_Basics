@@ -30,4 +30,4 @@ function printParticipant(...args: string[]) {
     args.forEach(ele => console.log(ele))
 }
 
-printParticipant(['aaa', 'vvv', 'ccc', 'yyy', 'kkk'])
+printParticipant('aaa', 'vvv', 'ccc', 'yyy', 'kkk')
