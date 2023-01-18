@@ -13,6 +13,15 @@ class Employee {
         this.#id = id
     }
 
+    // getter and setter for private property
+    get empId(): number {
+        return this.#id
+    }
+
+    set empId(newId: number) {
+        this.#id = newId
+    }
+
     // static method
     static getEmployeeCount(): number {
         return 50
