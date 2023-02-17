@@ -10,6 +10,7 @@ function convertIt(a: string[]): number[] {
     return a.map((ele: string) => Number(ele))
 }
 
+////////////////////////////////////////////////////////
 
 // tuple: order of the types matter
 let myTuple: [string, number, boolean] = ['one', 1, true]
@@ -37,3 +38,17 @@ let student: StudentType = {
     matric: 22222,
     gpa: [2.50, 3.80]
 }
+
+
+////////////////////////////////////////////////////////
+
+// enum
+enum Grade {
+    U = 1,
+    D, //return 2
+    C,
+    B,
+    A
+}
+
+console.log(Grade.U)
