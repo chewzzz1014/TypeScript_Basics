@@ -2,6 +2,10 @@
 
 type MyFunc = (a: number, b: number) => number
 
+interface MyFunInterface {
+    (a: number, b: number): number
+}
+
 const addNum: MyFunc = (a, b) => a + b
 
 const subNum: MyFunc = (a, b) => a - b
