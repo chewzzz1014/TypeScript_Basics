@@ -20,7 +20,15 @@ let myTuple: [string, number, boolean] = ['one', 1, true]
 // object: implicit or explixit type annotation
 type StudentType = {
     name: string,
-    matric: number | string
+    matric: number | string,
+    gender?: string // optional property
+    gpa: number[]
+}
+
+interface StudentInterface {
+    name: string,
+    matric: number | string,
+    gender?: string // optional property
     gpa: number[]
 }
 
