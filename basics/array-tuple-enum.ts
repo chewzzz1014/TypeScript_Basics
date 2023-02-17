@@ -17,10 +17,15 @@ let myTuple: [string, number, boolean] = ['one', 1, true]
 // myTuple[0] = false 
 
 
-// object
+// object: implicit or explixit type annotation
+type StudentType = {
+    name: string,
+    matric: number | string
+    gpa: number[]
+}
 
-
-let student = {
+let student: StudentType = {
     name: 'chewzzz',
-    matric: 22222
+    matric: 22222,
+    gpa: [2.50, 3.80]
 }
