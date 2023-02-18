@@ -29,3 +29,15 @@ let myAns: string = addOrConcet(2, 3, 'concat') as string
 
 // double casting/force casting
 (10 as unknown) as string // number to string
+
+
+//////////////////////////////////////////////////////////
+
+// DOM
+// TS infer as HTMLElement or null. Use ! (non-null assertion) to eliminate the null type
+const img = document.querySelector('img') as HTMLImageElement// HTMLImageElement
+const myImg = document.getElementById('#img')! as HTMLImageElement // HTMLElement. 
+const alsoMyImg = <HTMLImageElement>document.getElementById('#img')
+
+img.src
+myImg.src
