@@ -12,3 +12,14 @@ let varC = varA as Three // to more specific
 // 2. use <Type> (can'ts be used in TSX)
 let varD = <One>'world'
 let varE = <string | number>'world'
+
+
+// type narrowing
+const addOrConcet = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+    if (c === 'add')
+        return a + b
+    return `${a}${b}`
+}
+
+// error if no type assertion (bcs function may return number or string)
+let myAns: string = addOrConcet(2, 3, 'concat') as string
