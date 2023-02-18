@@ -23,3 +23,9 @@ const addOrConcet = (a: number, b: number, c: 'add' | 'concat'): number | string
 
 // error if no type assertion (bcs function may return number or string)
 let myAns: string = addOrConcet(2, 3, 'concat') as string
+
+
+//////////////////////////////////////////////////////////////
+
+// double casting/force casting
+(10 as unknown) as string // number to string
