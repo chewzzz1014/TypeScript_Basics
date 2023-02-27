@@ -66,3 +66,26 @@ class FooChild extends FooBase {
         // this.y => error! 
     }
 }
+
+
+// abstract
+// 1. Abstract class can't be directly invoked 
+// 2. The child class must provide the functionality of the abstract members inside abstract class
+
+// 1
+abstract class FooCommand { }
+class BarCommand extends FooCommand { } // ineherits abstract class
+// const fooCommand: FooCommand = new FooCommand() => error! can't create instance of class
+const barCommand = new BarCommand()
+
+// 2
+abstract class FooCommand1(){
+    abstract execute(): string;
+}
+class BarCommand1 extends FooCommand1 {
+    execute() {
+        return `Command Bar executed`
+    }
+}
+const barCommand1 = new BarCommand1()
+barCommand1.execute() 
