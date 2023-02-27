@@ -15,3 +15,30 @@ class Point {
 let p1 = new Point(0, 10)
 let p2 = new Point(10, 20)
 let p3 = p1.add(p2)
+
+
+// inheritance
+class Point3D extends Point {
+    z: number;
+
+    constructor(x: number, y: number, z: number) {
+        super(x, y)
+        this.z = z
+    }
+    add(point: Point3D) {
+        let point2D = super.add(point)
+        return new Point3D(point2D.x, point2D.y, this.z + point.z)
+    }
+}
+
+
+// static property
+class Something {
+    static instances = 0;
+    constructor() {
+        Something.instances++
+    }
+}
+let s1 = new Something()
+let s2 = new Something()
+console.log(Something.instances) // 2
