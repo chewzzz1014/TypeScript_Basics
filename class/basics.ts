@@ -42,3 +42,27 @@ class Something {
 let s1 = new Something()
 let s2 = new Something()
 console.log(Something.instances) // 2
+
+
+// access modifier: public (default), private, protected
+// public: can be accessed inside class, class children, class instances
+// protected: can be accessed inside class and by class children only
+// private: can be accessed inside class only
+class FooBase {
+    public x: number;
+    private y: number;
+    protected z: number;
+}
+let foo = new FooBase()
+foo.x // ok
+// foo.y => error! it's private 
+// foo.z => error! it's protected (accesible inside class and child class only)
+
+class FooChild extends FooBase {
+    constructor() {
+        super()
+        this.x; // ok
+        this.z // ok, FooChild is FooBase' child class
+        // this.y => error! 
+    }
+}
