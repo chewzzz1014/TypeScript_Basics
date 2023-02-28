@@ -79,7 +79,7 @@ class BarCommand extends FooCommand { } // ineherits abstract class
 const barCommand = new BarCommand()
 
 // 2
-abstract class FooCommand1(){
+abstract class FooCommand1 {
     abstract execute(): string;
 }
 class BarCommand1 extends FooCommand1 {
@@ -88,4 +88,18 @@ class BarCommand1 extends FooCommand1 {
     }
 }
 const barCommand1 = new BarCommand1()
-barCommand1.execute() 
+barCommand1.execute()
+
+
+// constructor is optional
+// class w/ constructor
+class Foo { }
+let foot = new Foo()
+
+// class with constructor
+class Foo1 {
+    x: number;
+    constructor(x: number) {
+        this.x = x
+    }
+}
