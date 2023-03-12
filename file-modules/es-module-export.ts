@@ -19,3 +19,9 @@ export {
 // dedicated export stmt with renaming
 let myName3 = 'chewzzz'
 export { myName3 as myRealName }
+
+
+// default export
+export default myName
+// export default function myFunc(){}
+// export default class myClass {}
