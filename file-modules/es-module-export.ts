@@ -1,4 +1,4 @@
-// ES Module syntax
+// ES Module syntax - export
 
 // prefix 'export'
 export let myName = 'chewzzz'
