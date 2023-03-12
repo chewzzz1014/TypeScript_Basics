@@ -15,3 +15,7 @@ export {
     myName1,
     SomeType1
 }
+
+// dedicated export stmt with renaming
+let myName3 = 'chewzzz'
+export { myName3 as myRealName }
