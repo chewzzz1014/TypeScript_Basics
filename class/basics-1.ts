@@ -23,3 +23,24 @@ class Coder {
 
 const me = new Coder('chewzzz', 'JPOP', 21, 'TypeScript')
 console.log(me.getAge())
+
+
+class WebDev extends Coder {
+    constructor(
+        public computer: string,
+        name: string,
+        music: string,
+        age: number
+    ) {
+        super(name, music, age)
+        this.computer = computer
+    }
+
+    // property 'lang' is protected in parent child so we can acces it from child class
+    public getLang() {
+        return `I write ${this.lang}`
+    }
+}
+
+const you = new WebDev('Windows', 'zzzz', 'Rock', 22)
+console.log(you.getLang())
