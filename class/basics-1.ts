@@ -119,3 +119,11 @@ class Bands {
             throw new Error('Param is not an array of string')
     }
 }
+
+
+const myBands = new Bands()
+
+// use 'myBands.data to access its property'
+console.log(myBands) // Bands { dataState: [] } 
+myBands.data = ['eeeee', 'dfffdgdf'] // Bands { dataState: [ 'eeeee', 'dfffdgdf' ] }
+console.log(myBands)
