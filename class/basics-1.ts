@@ -125,5 +125,5 @@ const myBands = new Bands()
 
 // use 'myBands.data to access its property'
 console.log(myBands) // Bands { dataState: [] } 
-myBands.data = ['eeeee', 'dfffdgdf'] // Bands { dataState: [ 'eeeee', 'dfffdgdf' ] }
-console.log(myBands)
+myBands.data = ['eeeee', 'dfffdgdf']
+console.log(myBands) // Bands { dataState: [ 'eeeee', 'dfffdgdf' ] }
