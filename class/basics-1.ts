@@ -1,3 +1,4 @@
+// !, visibility modifier
 class Coder {
 
     // definite assignment assertion
@@ -25,6 +26,7 @@ const me = new Coder('chewzzz', 'JPOP', 21, 'TypeScript')
 console.log(me.getAge())
 
 
+// inheritance
 class WebDev extends Coder {
     constructor(
         public computer: string,
@@ -47,6 +49,7 @@ console.log(you.getLang())
 
 //////////////////////////////////////////////////////////////
 
+// interface
 interface Musician {
     name: string,
     instrument: string,
@@ -69,3 +72,11 @@ class Guitarist implements Musician {
 
 const pagg = new Guitarist('ttttt', 'guitar')
 console.log(pagg.play('strums'))
+
+
+//////////////////////////////////////////////////////////////
+
+// statuc class members
+class Peeps {
+    static cou
+}
