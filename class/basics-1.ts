@@ -96,3 +96,26 @@ const John = new Peeps('John')
 const John1 = new Peeps('John1')
 const John2 = new Peeps('John2')
 console.log(`Current count is ${Peeps.getCount()}`)
+
+
+//////////////////////////////////////////////////////////////
+
+// getter and setter
+class Bands {
+    private dataState: string[]
+
+    constructor() {
+        this.dataState = []
+    }
+
+    public get data(): string[] {
+        return this.dataState
+    }
+
+    public set data(value: string[]) {
+        if (Array.isArray(value) && value.every(el => typeof el === 'string'))
+            this.dataState = value
+        else
+            throw new Error('Param is not an array of string')
+    }
+}
