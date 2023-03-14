@@ -76,7 +76,23 @@ console.log(pagg.play('strums'))
 
 //////////////////////////////////////////////////////////////
 
-// statuc class members
+// static class members
 class Peeps {
-    static cou
+    static count: number = 0
+
+    static getCount(): number {
+        return Peeps.count
+    }
+
+    public id: number
+
+    constructor(public name: string) {
+        this.name = name
+        this.id = ++Peeps.count
+    }
 }
+
+const John = new Peeps('John')
+const John1 = new Peeps('John1')
+const John2 = new Peeps('John2')
+console.log(`Current count is ${Peeps.getCount()}`)
