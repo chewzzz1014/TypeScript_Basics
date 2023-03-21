@@ -14,10 +14,10 @@ interface AddressWithUnit extends BasicAddress {
 interface Colorful {
     color: string
 }
-interface Circle {
+interface Circle1 {
     radius: number
 }
-interface ColorfulCircle extends Colorful, Circle { }
+interface ColorfulCircle extends Colorful, Circle1 { }
 
 const cc: ColorfulCircle = {
     color: 'red',
