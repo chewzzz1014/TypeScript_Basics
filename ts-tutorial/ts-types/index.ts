@@ -15,3 +15,9 @@ person = {
 function greeting(name: string): string {
     return `Hallo ${name}!`
 }
+
+let items = [0, 1, null, 'Hi']; // inferred type is (number|string)[]
+
+document.addEventListener('click', function (event) {
+    console.log(event.button); // MouseEvent.button
+});
