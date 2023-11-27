@@ -1,10 +1,64 @@
 // Number Types mini-challenge
 // Write a function that will only accept numbers and attend to 
 // all 'any' TypeScript weakness flags.
-import { showReviewTotal, populateUser, findLatestReview } from "./utils";
-import { Review, MyInfo } from "./types";
+const reviewTotalDisplay = document.querySelector('#reviews')
+const returningUserDisplay = document.querySelector('#returning-user')
+const userNameDisplay = document.querySelector('#user')
+
+function showReviewTotal(value: number, reviewer: string, isLoyalty: boolean) {
+    const iconDisplay = isLoyalty ? '⭐' : ''
+    reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
+}
+
+function populateUser(isReturning : boolean, userName: UserName ) {
+    if (isReturning == true){
+        returningUserDisplay.innerHTML = 'back'
+    }
+    userNameDisplay.innerHTML = `${userName.firstName} ${userName.lastName}`
+}
+
+function findLatestReview(reviews: Review[]) {
+    return reviews.reduce((prev, current) => {
+        return new Date(prev.date)<new Date(current.date) ? current : prev
+    }, reviews[0])
+}
 
 let isOpen: boolean
+
+interface Review {
+    name: string;
+    stars: number;
+    loyaltyUser: boolean;
+    date: string;
+}
+
+interface UserName {
+    firstName: string;
+    lastName: string
+}
+
+interface MyInfo {
+    userName: UserName;
+    isReturning: boolean;
+    age: number;
+    stayedAt: string[];
+}
+
+interface Location {
+    firstLine: string;
+    city: string;
+    code: number;
+    country: string;
+}
+
+interface Properties {
+    image: string;
+    title: string;
+    price: number;
+    location: Location;
+    contact: string;
+    isAvailable: boolean;
+}
 
 const reviews: Review[] = [
     {
@@ -27,9 +81,6 @@ const reviews: Review[] = [
     },
 ]
 
-const latestReview = findLatestReview(reviews)
-showReviewTotal(reviews.length, latestReview.name, latestReview.loyaltyUser)
-
 let you1: MyInfo = {
     userName: {firstName: 'Bobby', lastName: 'Brown'},
     isReturning: true,
@@ -37,4 +88,48 @@ let you1: MyInfo = {
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
 
+const properties: Properties[] = [
+    {
+        image: '',
+        title: 'Colombian Shack',
+        price: 45,
+        location: {
+            firstLine: 'shack 37',
+            city: 'Bogota',
+            code: 45632,
+            country: 'Colombia'
+        },
+        contact: 'marywinkle@gmail.com',
+        isAvailable: true  
+    },
+    {
+        image: '',
+        title: 'Polish Cottage',
+        price: 34,
+        location: {
+            firstLine: 'no 23',
+            city: 'Gdansk',
+            code: 343903,
+            country: 'Poland'
+        },
+        contact: 'garydavis@hotmail.com',
+        isAvailable: false 
+    },
+    {
+        image: '',
+        title: 'London Flat',
+        price: 23,
+        location: {
+            firstLine: 'flat 15',
+            city: 'London',
+            code: 35433,
+            country: 'United Kingdom',
+        },
+        contact: 'andyluger@aol.com',
+        isAvailable: true
+    }
+]
+
+const latestReview = findLatestReview(reviews)
+showReviewTotal(reviews.length, latestReview.name, latestReview.loyaltyUser)
 populateUser(you1.isReturning, you1.userName)

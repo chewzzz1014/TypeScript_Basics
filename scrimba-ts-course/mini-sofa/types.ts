@@ -16,3 +16,19 @@ export interface MyInfo {
     age: number;
     stayedAt: string[];
 }
+
+export interface Location {
+    firstLine: string;
+    city: string;
+    code: number;
+    country: string;
+}
+
+export interface Properties {
+    image: string;
+    title: string;
+    price: number;
+    location: Location;
+    contact: string;
+    isAvailable: boolean;
+}
