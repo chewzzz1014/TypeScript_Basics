@@ -4,6 +4,7 @@
 var reviewTotalDisplay = document.querySelector('#reviews');
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
+var propertyContainer = document.querySelector('.properties');
 function showReviewTotal(value, reviewer, isLoyalty) {
     var iconDisplay = isLoyalty ? '⭐' : '';
     reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay;
@@ -48,7 +49,7 @@ var you1 = {
 };
 var properties = [
     {
-        image: '',
+        image: 'images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -61,7 +62,7 @@ var properties = [
         isAvailable: true
     },
     {
-        image: '',
+        image: 'images/poland-property.jpg',
         title: 'Polish Cottage',
         price: 34,
         location: {
@@ -74,7 +75,7 @@ var properties = [
         isAvailable: false
     },
     {
-        image: '',
+        image: 'images/london-property.jpg',
         title: 'London Flat',
         price: 23,
         location: {
@@ -90,3 +91,13 @@ var properties = [
 var latestReview = findLatestReview(reviews);
 showReviewTotal(reviews.length, latestReview.name, latestReview.loyaltyUser);
 populateUser(you1.isReturning, you1.userName);
+for (var i = 0; i < properties.length; i++) {
+    var card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = properties[i].title;
+    var image = document.createElement('img');
+    image.height = 200;
+    image.setAttribute('src', properties[i].image);
+    card.appendChild(image);
+    propertyContainer.appendChild(card);
+}
