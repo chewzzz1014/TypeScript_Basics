@@ -1,18 +1,12 @@
 // Number Types mini-challenge
 // Write a function that will only accept numbers and attend to 
 // all 'any' TypeScript weakness flags.
-const reviewTotalDisplay = document.querySelector('#reviews') as HTMLHeadingElement
-const userNameDisplay = document.querySelector('#user')
-const returningUserDisplay = document.querySelector('#returning-user')
+import { showReviewTotal, populateUser, findLatestReview } from "./utils";
+import { Review, MyInfo } from "./types";
 
 let isOpen: boolean
 
-const reviews: {
-    name: string;
-    stars: number;
-    loyaltyUser: boolean;
-    date: string;
-}[] = [
+const reviews: Review[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -33,36 +27,14 @@ const reviews: {
     },
 ]
 
-function showReviewTotal(numReviews: number, reviewer: string, isReviewerRoyalty: boolean) {
-    reviewTotalDisplay.textContent = `reviews total ${numReviews} | lasted reviewed by ${reviewer}${isReviewerRoyalty ? '*' : ''}`
-}
-
-function findLatestReview() {
-    return reviews.reduce((prev, current) => {
-        return new Date(prev.date)<new Date(current.date) ? current : prev
-    }, reviews[0])
-}
-
-const latestReview = findLatestReview()
+const latestReview = findLatestReview(reviews)
 showReviewTotal(reviews.length, latestReview.name, latestReview.loyaltyUser)
 
-let you1: {
-    userName: {firstName: string; lastName: string};
-    isReturning: boolean;
-    age: number;
-    stayedAt: string[];
-} = {
+let you1: MyInfo = {
     userName: {firstName: 'Bobby', lastName: 'Brown'},
     isReturning: true,
     age: 21,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
-}
-
-function populateUser(isReturning: boolean, userName: {firstName: string; lastName: string}) {
-    if (isReturning){
-        returningUserDisplay.innerHTML = 'back'
-    }
-    userNameDisplay.innerHTML = `${userName.firstName} ${userName.lastName}`
 }
 
 populateUser(you1.isReturning, you1.userName)
