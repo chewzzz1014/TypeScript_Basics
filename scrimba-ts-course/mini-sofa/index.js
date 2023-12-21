@@ -5,10 +5,13 @@ var reviewTotalDisplay = document.querySelector('#reviews');
 var returningUserDisplay = document.querySelector('#returning-user');
 var userNameDisplay = document.querySelector('#user');
 var propertyContainer = document.querySelector('.properties');
+var reviewContainer = document.querySelector('.reviews');
+var container = document.querySelector('.container');
+var button = document.querySelector('button');
 var footer = document.querySelector('.footer');
 function showReviewTotal(value, reviewer, loyalty) {
     var iconDisplay = loyalty === Loyalty.GOLD_USER ? '⭐' : '';
-    reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay;
+    reviewTotalDisplay.innerHTML = "".concat(value.toString(), " review").concat(makeMultiple(value), " | last reviewed by ").concat(reviewer, " ").concat(iconDisplay);
 }
 function populateUser(isReturning, userName) {
     if (isReturning == true) {
@@ -21,13 +24,47 @@ function findLatestReview(reviews) {
         return new Date(prev.date) < new Date(current.date) ? current : prev;
     }, reviews[0]);
 }
-var isOpen;
+function showDetails(authoritiyStatus, element, price) {
+    if (authoritiyStatus) {
+        var priceDisplay = document.createElement('div');
+        priceDisplay.innerHTML = price.toString() + '/night';
+        element.appendChild(priceDisplay);
+    }
+}
+function makeMultiple(value) {
+    return (value > 1 || value === 0) ? 's' : '';
+}
+function getTopTwoReviews(reviews) {
+    var sortedReviews = reviews.sort(function (a, b) { return b.stars - a.stars; });
+    return sortedReviews.slice(0, 2);
+}
+var count = 0;
+function addReviews(reviews) {
+    if (!count) {
+        count++;
+        var topTwo = getTopTwoReviews(reviews);
+        for (var i = 0; i < topTwo.length; i++) {
+            var card = document.createElement('div');
+            card.classList.add('review-card');
+            card.innerHTML = "".concat(topTwo[i].stars, " stars from ").concat(topTwo[i].name);
+            reviewContainer.appendChild(card);
+        }
+        container.removeChild(button);
+    }
+}
 var Loyalty;
 (function (Loyalty) {
     Loyalty[Loyalty["GOLD_USER"] = 0] = "GOLD_USER";
     Loyalty[Loyalty["SILVER_USER"] = 1] = "SILVER_USER";
     Loyalty[Loyalty["BRONZE_USER"] = 2] = "BRONZE_USER";
 })(Loyalty || (Loyalty = {}));
+var Permissons;
+(function (Permissons) {
+    Permissons["ADMIN"] = "ADMIN";
+    Permissons["READ_ONLY"] = "READ_ONLY";
+})(Permissons || (Permissons = {}));
+var isOpen;
+var isLoggedIn;
 var reviews = [
     {
         name: 'Sheia',
@@ -50,6 +87,7 @@ var reviews = [
 ];
 var you1 = {
     userName: { firstName: 'Bobby', lastName: 'Brown' },
+    permissions: Permissons.ADMIN,
     isReturning: true,
     age: 21,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
@@ -107,6 +145,8 @@ for (var i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image);
     card.appendChild(image);
     propertyContainer.appendChild(card);
+    showDetails(you1.permissions, card, properties[i].price);
 }
+button === null || button === void 0 ? void 0 : button.addEventListener('click', function () { return addReviews(reviews); });
 var currentLocation = ['Kuala Lumpur', '21:32', 27.5];
 footer.innerHTML = "".concat(currentLocation[0], " ").concat(currentLocation[1], " ").concat(currentLocation[2], "C");

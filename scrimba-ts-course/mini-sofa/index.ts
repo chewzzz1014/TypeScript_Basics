@@ -5,18 +5,21 @@ const reviewTotalDisplay = document.querySelector('#reviews')
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const propertyContainer = document.querySelector('.properties')
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
+const button = document.querySelector('button')
 const footer = document.querySelector('.footer')
 
 function showReviewTotal(value: number, reviewer: string, loyalty: Loyalty) {
     const iconDisplay = loyalty === Loyalty.GOLD_USER ? '⭐' : ''
-    reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
+    reviewTotalDisplay!.innerHTML = `${value.toString()} review${makeMultiple(value)} | last reviewed by ${reviewer} ${iconDisplay}`
 }
 
 function populateUser(isReturning : boolean, userName: UserName ) {
     if (isReturning == true){
-        returningUserDisplay.innerHTML = 'back'
+        returningUserDisplay!.innerHTML = 'back'
     }
-    userNameDisplay.innerHTML = `${userName.firstName} ${userName.lastName}`
+    userNameDisplay!.innerHTML = `${userName.firstName} ${userName.lastName}`
 }
 
 function findLatestReview(reviews: Review[]) {
@@ -25,12 +28,47 @@ function findLatestReview(reviews: Review[]) {
     }, reviews[0])
 }
 
-let isOpen: boolean
+function showDetails(authoritiyStatus: boolean | Permissons, element: HTMLDivElement, price: number) {
+    if (authoritiyStatus) {
+        const priceDisplay = document.createElement('div')
+        priceDisplay.innerHTML = price.toString() + '/night'
+        element.appendChild(priceDisplay)
+    }
+}
+
+function makeMultiple(value: number): string {
+    return (value>1 || value===0) ? 's' : ''
+}
+
+function getTopTwoReviews(reviews: Review[]): Review[] {
+    const sortedReviews = reviews.sort((a, b) => b.stars - a.stars)
+    return sortedReviews.slice(0, 2)
+}
+
+let count = 0
+function addReviews(reviews: Review[]): void {
+    if (!count) {
+        count++
+        const topTwo = getTopTwoReviews(reviews)
+        for (let i=0; i<topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = `${topTwo[i].stars} stars from ${topTwo[i].name}`
+            reviewContainer.appendChild(card)
+        }
+        container!.removeChild(button)
+    }
+}
 
 enum Loyalty {
     GOLD_USER,
     SILVER_USER,
     BRONZE_USER
+}
+
+enum Permissons {
+    ADMIN = 'ADMIN',
+    READ_ONLY = 'READ_ONLY'
 }
 
 interface Review {
@@ -42,7 +80,7 @@ interface Review {
 
 interface UserName {
     firstName: string;
-    lastName: string
+    lastName: string;
 }
 
 interface MyInfo {
@@ -50,9 +88,10 @@ interface MyInfo {
     isReturning: boolean;
     age: number;
     stayedAt: string[];
+    permissions: Permissons;
 }
 
-interface Location {
+interface MyLocation {
     firstLine: string;
     city: string;
     code: number;
@@ -63,10 +102,13 @@ interface Properties {
     image: string;
     title: string;
     price: number;
-    location: Location;
+    location: MyLocation;
     contact: [number, string];
     isAvailable: boolean;
 }
+
+let isOpen: boolean
+let isLoggedIn: boolean
 
 const reviews: Review[] = [
     {
@@ -91,6 +133,7 @@ const reviews: Review[] = [
 
 let you1: MyInfo = {
     userName: {firstName: 'Bobby', lastName: 'Brown'},
+    permissions: Permissons.ADMIN,
     isReturning: true,
     age: 21,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
@@ -118,7 +161,7 @@ const properties: Properties[] = [
             firstLine: 'no 23',
             city: 'Gdansk',
             code: 343903,
-            country: 'Poland'
+            country: 'Poland',
         },
         contact: [+1123495082908, 'garydavis@hotmail.com'],
         isAvailable: false 
@@ -150,8 +193,11 @@ for (let i = 0; i < properties.length; i++) {
     image.height = 200
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
-    propertyContainer.appendChild(card)
+    propertyContainer!.appendChild(card)
+    showDetails(you1.permissions, card, properties[i].price)
 }
 
+button?.addEventListener('click', () => addReviews(reviews))
+
 let currentLocation: [string, string, number] = ['Kuala Lumpur', '21:32', 27.5]
-footer.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}C`
+footer!.innerHTML = `${currentLocation[0]} ${currentLocation[1]} ${currentLocation[2]}C`

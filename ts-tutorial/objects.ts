@@ -16,6 +16,7 @@ class Counter {
 }
 
 class Person {
+    // start with _ is private 
     _ssn: string;
     _firstName: string;
     _lastName: string;
@@ -35,6 +36,6 @@ class Person {
     }
 
     getFullName() {
-        return `${this.firstName} ${this.lastName}`
+        return `${this._firstName} ${this._lastName}`
     }
 }
