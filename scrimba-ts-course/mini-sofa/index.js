@@ -52,6 +52,14 @@ function addReviews(reviews) {
         container.removeChild(button);
     }
 }
+var MainProperty = /** @class */ (function () {
+    function MainProperty(source, title, reviews) {
+        this.source = source;
+        this.title = title;
+        this.review = reviews;
+    }
+    return MainProperty;
+}());
 var Loyalty;
 (function (Loyalty) {
     Loyalty[Loyalty["GOLD_USER"] = 0] = "GOLD_USER";
@@ -131,6 +139,19 @@ var properties = [
         },
         contact: [+1123495082908, 'andyluger@aol.com'],
         isAvailable: true
+    },
+    {
+        image: 'images/malia-hotel.jpg',
+        title: 'Malia Hotel',
+        price: 35,
+        location: {
+            firstLine: 'Room 4',
+            city: 'Malia',
+            code: 45334,
+            country: 'Malaysia'
+        },
+        contact: [+60349822083, 'lee34@gmail.com'],
+        isAvailable: false
     }
 ];
 var latestReview = findLatestReview(reviews);

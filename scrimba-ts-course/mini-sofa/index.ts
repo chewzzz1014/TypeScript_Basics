@@ -60,6 +60,17 @@ function addReviews(reviews: Review[]): void {
     }
 }
 
+class MainProperty {
+    source: string
+    title: string
+    review: Review[]
+    constructor(source: string, title: string, reviews: Review[]) {
+        this.source = source
+        this.title = title
+        this.review = reviews
+    }
+}
+
 enum Loyalty {
     GOLD_USER,
     SILVER_USER,
@@ -94,7 +105,7 @@ interface MyInfo {
 interface MyLocation {
     firstLine: string;
     city: string;
-    code: number;
+    code: number | string;
     country: string;
 }
 
@@ -178,6 +189,19 @@ const properties: Properties[] = [
         },
         contact: [ +1123495082908, 'andyluger@aol.com'],
         isAvailable: true
+    },
+    {
+        image: 'images/malia-hotel.jpg',
+        title: 'Malia Hotel',
+        price: 35,
+        location: {
+            firstLine: 'Room 4',
+            city: 'Malia',
+            code: 45334,
+            country: 'Malaysia',
+        },
+        contact: [ +60349822083, 'lee34@gmail.com'],
+        isAvailable: false
     }
 ]
 
